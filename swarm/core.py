@@ -3,10 +3,12 @@ import copy
 import json
 from collections import defaultdict
 import os
+
 from typing import List, Callable, Union
 
 # Package/library imports
 from openai import OpenAI
+from g4f.client import Client
 
 
 # Local imports
@@ -26,8 +28,9 @@ __CTX_VARS_NAME__ = "context_variables"
 
 class Swarm:
     def __init__(self, client=None):
-        if not client:
-            client = OpenAI(base_url=os.environ.get("BASE_URL"))
+        client = Client()
+        # if not client:
+        #     client = OpenAI(base_url=os.environ.get("BASE_URL"))
         self.client = client
 
     def get_chat_completion(
